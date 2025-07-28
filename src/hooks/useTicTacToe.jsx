@@ -21,13 +21,13 @@ export const useTicTacToe = () => {
     if (W) {
       setWinner(W);
     } else if (checkEndTheGame(s)) {
-      setWinner("x | o");
+      setWinner("draw");
     }
   };
 
   // AI move logic
   useEffect(() => {
-    if (isAiMode && turn === "o" && !winner) {
+    if (isAiMode && turn === "o" && !winner && !checkEndTheGame(squares)) {
       const bestMove = findBestMove([...squares], difficulty);
       if (bestMove !== -1) {
         const s = [...squares];
@@ -38,11 +38,11 @@ export const useTicTacToe = () => {
         if (W) {
           setWinner(W);
         } else if (checkEndTheGame(s)) {
-          setWinner("x | o");
+          setWinner("draw");
         }
       }
     }
-  }, [turn, isAiMode, winner, difficulty]);
+  }, [turn, isAiMode, winner, difficulty, squares]);
 
   const resetGame = () => {
     setSquares(Array(9).fill(""));

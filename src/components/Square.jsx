@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 
 const Square = ({ ind, updateSquares, clsName }) => {
   const handleClick = () => {
+    if (clsName) return; // already filled
     updateSquares(ind);
   };
   return (

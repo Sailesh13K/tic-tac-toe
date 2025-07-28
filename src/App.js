@@ -28,7 +28,14 @@ function App() {
       </h1>
 
       <div className="game-controls">
-        <Button resetGame={resetGame} text="Reset Game" />
+        <Button
+          resetGame={resetGame}
+          text={
+            squares.every((sq) => sq === "") && !winner
+              ? "New Game"
+              : "Reset Game"
+          }
+        />
         <button onClick={toggleAiMode} className="ai-toggle">
           {isAiMode ? "Disable AI" : "Enable AI"}
         </button>
@@ -40,7 +47,7 @@ function App() {
       </div>
 
       <div className="game">
-        {Array.from("012345678").map((ind) => (
+        {[...Array(9)].map((_, ind) => (
           <Square
             key={ind}
             ind={ind}
